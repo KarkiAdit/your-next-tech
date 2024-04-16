@@ -6,37 +6,56 @@ import {
     NavbarItem,
     Input,
     Button,
-    Avatar
+    Avatar,
+    Popover,
+    PopoverTrigger,
+    PopoverContent
 } from '@nextui-org/react';
 import { auth } from '@/auth';
+import * as actions from '@/actions';
 
 export default async function Header() {
     const session = await auth();
+
     let authContent: React.ReactNode;
     if (session?.user) {
-        authContent = <>
-            <NavbarItem className='font-bold'>
-                {session.user.name}
-            </NavbarItem>
-            <NavbarItem>
-                <Avatar src={session.user.image || ""} />
-            </NavbarItem>
-        </>
-    } else {
-        authContent = <>
-            <NavbarItem>
-                <Button type='submit' color='secondary' variant='bordered'>
-                    Sign In
-                </Button>
-            </NavbarItem>
+            authContent =(
+            <Popover placement='left'>
+                <PopoverTrigger>
+                    <div className='flex items-center font-bold cursor-pointer'>
+                        <p className='mr-3'>{session.user.name}</p>
+                        <Avatar src={session?.user.image || ""} />
+                    </div>
+                </PopoverTrigger>
+                <PopoverContent>
+                    <div className='p-4'>
+                        <form action={actions.signOut}>
+                            <Button type='submit'>
+                                Sign Out
+                            </Button>
+                        </form>
+                    </div>
+                </PopoverContent>
+            </Popover>);
+        } else {
+            authContent = <>
+                <NavbarItem>
+                    <form action={actions.signIn}>
+                        <Button type='submit' color='secondary' variant='bordered'>
+                            Sign In
+                        </Button>
+                    </form>
+                </NavbarItem>
 
-            <NavbarItem>
-                <Button type='submit' color='primary' variant='flat'>
-                    Sign Up
-                </Button>
-            </NavbarItem>
-        </>
-    }
+                <NavbarItem>
+                    <form action={actions.signOut}>
+                        <Button type='submit' color='primary' variant='flat'>
+                            Sign Up
+                        </Button>
+                    </form>
+                </NavbarItem>
+            </>
+        }
 
     return(
         <Navbar className='shadow mb-6'>
@@ -52,5 +71,4 @@ export default async function Header() {
             </NavbarContent>
         </Navbar>
     )
-
 }
