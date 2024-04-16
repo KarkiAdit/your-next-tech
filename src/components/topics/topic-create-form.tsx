@@ -25,6 +25,7 @@ export default function TopicCreateForm() {
                         <h3 className='text-lg'>Create a Topic</h3>
                         <Input name='name' label='Name'labelPlacement='outside' placeholder='Name' isInvalid={!!formState.errors.name} errorMessage={formState.errors.name?.join(', ')}/>
                         <Textarea name='description' label='Description' labelPlacement='outside' placeholder='Describe your topic' isInvalid={!!formState.errors.description} errorMessage={formState.errors.description?.join(', ')}/>
+                        {formState.errors._form ? <div className='text-tiny text-danger rounded p-2 bg-red border border-red-300'>{formState.errors._form?.join(', ')}</div>:  null}
                         <Button type='submit'>Submit</Button>
                     </div>
                 </form>
