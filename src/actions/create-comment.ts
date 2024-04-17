@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { auth } from "@/auth";
-import { db } from "@/db";
+import { postgresDb } from "@/db";
 import paths from "@/paths";
 
 const createCommentSchema = z.object({
@@ -43,7 +43,7 @@ export async function createComment(
   }
 
   try {
-    await db.comment.create({
+    await postgresDb.comment.create({
       data: {
         content: result.data.content,
         postId: postId,
@@ -67,7 +67,7 @@ export async function createComment(
     }
   }
 
-  const topic = await db.topic.findFirst({
+  const topic = await postgresDb.topic.findFirst({
     where: { posts: { some: { id: postId } } },
   });
 
