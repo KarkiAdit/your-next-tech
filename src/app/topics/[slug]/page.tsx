@@ -3,6 +3,7 @@ import PostList from '@/components/posts/post-list';
 import { fetchPostsByTopicsSlug } from "@/db/queries/posts";
 import { Suspense } from "react";
 import LoadingSkeleton from "@/components/common/loading-skeleton";
+import TopicDescriptionShow from "@/components/topics/topic-description-show";
 interface TopicShowPageProps{
     params: {
         slug: string
@@ -21,7 +22,8 @@ export default function TopicShowPage({ params }: TopicShowPageProps) {
             
         </div>
         <div>
-            <PostCreateForm slug={slug}/>
+            <PostCreateForm slug={slug} />
+            <TopicDescriptionShow slug={slug} />
         </div>
     </div>
     )
