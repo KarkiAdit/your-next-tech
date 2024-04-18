@@ -4,7 +4,6 @@ import {
     NavbarBrand,
     NavbarContent,
     NavbarItem,
-    Input,
     Button,
     Avatar,
     Popover,
@@ -13,6 +12,9 @@ import {
 } from '@nextui-org/react';
 import { auth } from '@/auth';
 import * as actions from '@/actions';
+import SearchInput from '@/components/search-input';
+import { Suspense } from 'react';
+
 
 export default async function Header() {
     const session = await auth();
@@ -63,8 +65,9 @@ export default async function Header() {
                 <Link href='/' className='font-bold'>YourNextTech</Link>
             </NavbarBrand>
             <NavbarContent justify='center'>
-                {/* TODO: Add searchbar functions */}
-                <Input />
+                <Suspense>
+                    <SearchInput />
+                </Suspense>
             </NavbarContent>
             <NavbarContent justify='end'>
                 {authContent}
