@@ -3,8 +3,8 @@ import PostShow from "@/components/posts/post-show";
 import CommentList from "@/components/comments/comment-list";
 import CommentCreateForm from "@/components/comments/comment-create-form";
 import paths from "@/paths";
-import { fetchCommentsByPostId } from "@/db/queries/comments";
-
+import { Suspense } from 'react';
+import LoadingSkeleton from "@/components/common/loading-skeleton";
 interface PostShowPageProps {
   params: {
     slug: string;
@@ -20,9 +20,11 @@ export default async function PostShowPage({ params }: PostShowPageProps) {
       <Link className="underline decoration-solid" href={paths.topicShow(slug)}>
         {"< "}Back to {slug}
       </Link>
-      <PostShow postId={postId} />
+      <Suspense fallback={<LoadingSkeleton />}>
+        <PostShow postId={postId} />
+      </Suspense>
       <CommentCreateForm postId={postId} startOpen />
-      <CommentList fetchData={() => fetchCommentsByPostId(postId)} />
+      <CommentList postId={postId} />
     </div>
   );
 }
