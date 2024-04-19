@@ -4,4 +4,6 @@ export {createComment} from './create-comment';
 export {createTopic} from './create-topic';
 export {createPost} from './create-post';
 export {createOrDeleteAdmin} from './createOrDeleteAdmin';
+export {deleteComment} from './delete-comment';
+export {deletePost} from './delete-post';
 export {search} from './search';
