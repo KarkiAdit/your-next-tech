@@ -1,8 +1,14 @@
+ "use server"
 import Image from "next/image";
 import CommentCreateForm from "@/components/comments/comment-create-form";
 import { fetchCommentsByPostId } from "@/db/queries/comments";
 import { Suspense } from 'react';
 import LoadingSkeleton from "@/components/common/loading-skeleton";
+import CommentDeleteForm from './comment-delete-button';
+// import { Textarea, Button } from "@nextui-org/react";
+
+// import { Session } from "inspector";
+// import { auth } from "@/auth";
 
 interface CommentShowProps {
   commentId: string;
@@ -12,10 +18,14 @@ interface CommentShowProps {
 export default async function CommentShow({ commentId, postId }: CommentShowProps) {
   const comments = await fetchCommentsByPostId(postId);
   const comment = comments.find((c) => c.id === commentId);
-
+  // const session = await auth();
   if (!comment) {
     return null;
   }
+  // let possibleToDelete = false
+  // if(session && session.user && session.user.id == comment.userId){
+  //   possibleToDelete = true;
+  // }
 
   const children = comments.filter((c) => c.parentId === commentId);
   const renderedChildren = children.map((child) => {
@@ -41,9 +51,12 @@ export default async function CommentShow({ commentId, postId }: CommentShowProp
             {comment.user.name}
           </p>
           <p className="text-gray-900">{comment.content}</p>
-
+          
           <CommentCreateForm postId={comment.postId} parentId={comment.id} />
         </div>
+        {/* {possibleToDelete && ( */}
+          <CommentDeleteForm commentId={comment.id}/>
+        {/* )} */}
       </div>
       <div className="pl-4">{renderedChildren}</div>
     </div>
