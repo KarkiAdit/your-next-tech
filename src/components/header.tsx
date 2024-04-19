@@ -8,6 +8,7 @@ import {
 } from '@nextui-org/react';
 import HeaderAuth from '@/components/header-auth';
 import SearchInput from '@/components/search-input';
+import LoadingSkeleton from './common/loading-skeleton';
 
 export default function Header() {
   return (
@@ -26,7 +27,9 @@ export default function Header() {
       </NavbarContent>
 
       <NavbarContent justify="end">
-        <HeaderAuth />
+        <Suspense fallback={<LoadingSkeleton />}>
+          <HeaderAuth />
+        </Suspense>
       </NavbarContent>
     </Navbar>
   );

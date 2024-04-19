@@ -52,3 +52,14 @@ export function fetchTopPosts(): Promise<PostWithData[]> {
         }
     });
 };
+
+export function fetchPostsByUserId(userId: string): Promise<PostWithData[]> {
+    return postgresDb.post.findMany({
+        where: { user : { id: userId}  },
+        include: {
+            topic: {select: { slug: true }},
+            user: {select: { name : true }},
+            _count: {select: { comments: true }}
+        }
+    })
+}
