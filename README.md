@@ -2,7 +2,7 @@ Here’s a comprehensive README for your GitHub repository, based on the "YourNe
 
 ---
 
-# ![YourNextTech Logo](https://dummyimage.com/60x60/000/fff&text=🔗) YourNextTech - A Social Platform for the Tech Community 
+# YourNextTech - A Social Platform for the Tech Community 
 
 ### A platform for developers, tech enthusiasts, and innovators to share insights, discuss trends, and build knowledge in a secure, interactive space.
 
@@ -15,19 +15,19 @@ Here’s a comprehensive README for your GitHub repository, based on the "YourNe
 
 ## ✨ Features
 
-- ** Robust User Authentication**  
+- Robust User Authentication**  
   - Supports both standard login/signup and GitHub OAuth for secure access.
   
-- ** Dynamic Feed for Top Posts**  
+- Dynamic Feed for Top Posts**  
   - Automatically updates to display trending posts for a continuously fresh feed.
   
-- ** Smart Search Tool**  
+-  Smart Search Tool**  
   - Keyword-based search functionality for quick access to relevant content.
 
-- ** Interactive Comment System**  
+- Interactive Comment System**  
   - Commenting and nested replies allow users to engage deeply with content.
 
-- ** Customizable Content Feed**  
+- Customizable Content Feed**  
   - Users can personalize their feed by hiding irrelevant posts, creating a tailored experience.
 
 ---
